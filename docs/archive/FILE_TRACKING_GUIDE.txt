@@ -1,0 +1,214 @@
+================================================================================
+                    STEM VCS - File Tracking Guide
+================================================================================
+
+HOW STEM TRACKS FILES
+----------------------
+
+By default, STEM tracks ALL files in your project folder.
+
+When you run "stem add .", it stages:
+  - All source code files
+  - All assets
+  - All configuration files
+  - ALL files (unless excluded)
+
+
+HOW TO EXCLUDE FILES (.stemignore)
+-----------------------------------
+
+Create a file named ".stemignore" in your project root.
+List files/folders you DON'T want tracked.
+
+Example .stemignore:
+  .vscode/
+  .kiro/
+  bin/
+  *.exe
+  *.log
+
+
+FOR YOUR XYLUS OS PROJECT
+--------------------------
+
+Run this script to setup .stemignore automatically:
+
+    SETUP_XYLUS.bat
+
+This creates .stemignore that excludes:
+  ✓ .vscode/     (IDE settings)
+  ✓ .kiro/       (AI assistant)
+  ✓ .vs/         (Visual Studio)
+  ✓ bin/         (Compiled binaries)
+  ✓ obj/         (Build objects)
+  ✓ *.exe        (Executables)
+  ✓ *.dll        (Libraries)
+  ✓ *.log        (Log files)
+  ✓ *.tmp        (Temporary files)
+
+And INCLUDES:
+  ✓ All .c, .cpp, .h files (Source code)
+  ✓ All .cs, .java files (Source code)
+  ✓ All .png, .jpg files (Assets)
+  ✓ All .wav, .mp3 files (Audio)
+  ✓ All .txt, .md files (Documentation)
+  ✓ Build scripts (.bat, .sh)
+  ✓ Configuration files
+
+
+CHECKING WHAT WILL BE COMMITTED
+--------------------------------
+
+Before committing, you can see what files will be included:
+
+    cd E:\STEM_VCS\previous_Versions\version_0
+    stem add .
+    stem status
+
+This shows you:
+  - Files that will be committed
+  - Files that are ignored
+  - Current branch
+  - Repository status
+
+
+LARGE FILES (500MB+)
+--------------------
+
+STEM can handle large files, but:
+
+1. Make sure to exclude unnecessary large files:
+   - Compiled binaries (*.exe, *.dll)
+   - Build outputs (bin/, obj/)
+   - IDE cache files
+
+2. Keep only source files and essential assets:
+   - Source code (always small)
+   - Images/textures (usually okay)
+   - Audio files (check size)
+
+3. If you have HUGE files (100MB+), consider:
+   - Storing them separately
+   - Adding to .stemignore
+   - Using a different system for large assets
+
+
+WORKFLOW FOR XYLUS OS
+---------------------
+
+Step 1: Setup .stemignore
+    Run: SETUP_XYLUS.bat
+
+Step 2: Add files
+    cd E:\STEM_VCS\previous_Versions\version_0
+    stem add .
+
+Step 3: Check what's staged
+    stem status
+
+Step 4: Commit
+    stem commit -m "Initial commit: Xylus OS version 0"
+
+Step 5: Push to Google Drive
+    stem push
+
+
+WHAT GETS PUSHED?
+-----------------
+
+When you run "stem push":
+  1. Only COMMITTED files are pushed
+  2. Files in .stemignore are never pushed
+  3. Data is uploaded to your Google Drive folder
+  4. Compressed and efficient storage
+
+
+FILE SIZE RECOMMENDATIONS
+-------------------------
+
+✓ INCLUDE:
+  - Source code (always small, usually KB)
+  - Text files (.txt, .md, .json)
+  - Small images (<10MB each)
+  - Scripts and configurations
+  - Small audio files (<5MB each)
+
+✗ EXCLUDE (add to .stemignore):
+  - Compiled executables (*.exe)
+  - Build outputs (bin/, obj/)
+  - IDE caches (.vscode/, .vs/)
+  - Large binaries (>50MB)
+  - Video files (*.mp4, *.avi)
+  - ISO images (*.iso)
+
+
+EXAMPLE: TYPICAL GAME PROJECT
+------------------------------
+
+INCLUDE:
+  ✓ src/              (Source code)
+  ✓ assets/images/    (Textures)
+  ✓ assets/sounds/    (Audio)
+  ✓ scripts/          (Game scripts)
+  ✓ docs/             (Documentation)
+  ✓ *.sln, *.csproj   (Project files)
+
+EXCLUDE:
+  ✗ bin/              (Build output)
+  ✗ obj/              (Intermediate files)
+  ✗ .vs/              (IDE cache)
+  ✗ .vscode/          (IDE settings)
+  ✗ *.exe             (Compiled game)
+  ✗ *.pdb             (Debug symbols)
+  ✗ node_modules/     (Dependencies)
+
+
+MANUAL .stemignore CREATION
+----------------------------
+
+If SETUP_XYLUS.bat doesn't work:
+
+1. Navigate to: E:\STEM_VCS\previous_Versions\version_0
+
+2. Create new file: .stemignore
+   (Note the dot at the beginning!)
+
+3. Open in notepad
+
+4. Add these lines:
+   .vscode/
+   .kiro/
+   .vs/
+   bin/
+   obj/
+   *.exe
+   *.dll
+   *.log
+
+5. Save and close
+
+
+CHECKING IGNORED FILES
+----------------------
+
+To see what files are being ignored:
+
+    stem status --ignored
+
+This shows files that match .stemignore patterns.
+
+
+SUMMARY
+-------
+
+1. Run: SETUP_XYLUS.bat (creates .stemignore)
+2. Run: stem add . (stages files)
+3. Run: stem status (check what's staged)
+4. Run: stem commit -m "message" (commit)
+5. Run: stem push (upload to Google Drive)
+
+Only source code and essential assets will be pushed!
+Build outputs, IDE files, and cache will be excluded!
+
+
+================================================================================

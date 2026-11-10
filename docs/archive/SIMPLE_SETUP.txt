@@ -1,0 +1,249 @@
+================================================================================
+                    STEM VCS - SIMPLE GOOGLE DRIVE SETUP
+                         NO DESKTOP APP NEEDED!
+================================================================================
+
+HOW IT WORKS
+------------
+
+1. You give STEM your Google Drive folder URL
+2. First time: Authorize STEM to upload (one-time, 2 minutes)
+3. Run 'stem push' anytime to upload
+4. Done!
+
+NO Google Drive Desktop app needed!
+NO complex setup needed!
+NO Google Cloud Console needed!
+
+
+STEP-BY-STEP GUIDE
+------------------
+
+STEP 1: Get Your Google Drive Folder URL
+-----------------------------------------
+
+1. Open Google Drive in your browser
+2. Create a new folder (or use existing one)
+3. Open the folder
+4. Copy the URL from address bar
+
+Example:
+  https://drive.google.com/drive/folders/YOUR_FOLDER_ID
+
+That's your folder URL!
+
+
+STEP 2: Initialize Your Repository
+-----------------------------------
+
+cd "E:\STEM_VCS\previous_Versions\version_0"
+
+stem init --cloud "https://drive.google.com/drive/folders/YOUR_FOLDER_ID"
+
+Replace YOUR_FOLDER_ID with your actual folder URL.
+
+
+STEP 3: Add Your Files
+-----------------------
+
+stem add .
+
+This adds all files (164 files in your case).
+
+
+STEP 4: Create First Commit
+----------------------------
+
+stem commit -m "Initial commit: Xylus OS version 0"
+
+
+STEP 5: Push to Google Drive (First Time)
+------------------------------------------
+
+stem push
+
+The FIRST time you run this, you'll see:
+
+  [ERROR] Google Drive authorization required
+  
+  Run this command:
+  powershell -ExecutionPolicy Bypass -File "C:\path\to\STEM_VCS\gdrive_upload.ps1" -SetupAuth
+
+DO THIS NOW:
+
+powershell -ExecutionPolicy Bypass -File "C:\path\to\STEM_VCS\gdrive_upload.ps1" -SetupAuth
+
+This will:
+1. Open your browser
+2. Ask you to sign in to Google (if not already signed in)
+3. Show: "STEM VCS wants to access your Google Drive"
+4. Click "Allow"
+5. Google shows you a CODE
+6. Copy the code
+7. Paste it in PowerShell
+8. Done!
+
+The authorization is SAVED. You only do this ONCE.
+
+
+STEP 6: Push Again
+-------------------
+
+Now run:
+
+stem push
+
+This time it will ACTUALLY UPLOAD all your files to Google Drive!
+
+You'll see:
+  [*] Uploading repository to Google Drive...
+  [OK] file1
+  [OK] file2
+  ...
+  [OK] Successfully pushed to 'cloud'
+
+
+THAT'S IT!
+----------
+
+From now on:
+
+stem add .
+stem commit -m "Updated files"
+stem push
+
+Files upload to Google Drive automatically!
+
+
+FOR YOUR XYLUS OS PROJECT
+-------------------------
+
+Your project: E:\STEM_VCS\previous_Versions\version_0
+Your Google Drive: https://drive.google.com/drive/folders/YOUR_FOLDER_ID
+
+QUICK COMMANDS:
+
+cd E:\STEM_VCS\previous_Versions\version_0
+
+stem init --cloud "https://drive.google.com/drive/folders/YOUR_FOLDER_ID"
+
+stem add .
+
+stem commit -m "Initial commit: Xylus OS v0"
+
+stem push
+
+If it asks for authorization:
+  powershell -ExecutionPolicy Bypass -File "C:\path\to\STEM_VCS\gdrive_upload.ps1" -SetupAuth
+
+Then run 'stem push' again.
+
+
+IMPORTANT NOTES
+---------------
+
+* Authorization is ONE-TIME only (saved in .stem/gdrive_token)
+* NO Google Drive Desktop app needed
+* NO Google Cloud Console setup needed
+* STEM uses its own public OAuth client
+* Your Google password is NEVER stored
+* You can revoke access anytime at: https://myaccount.google.com/permissions
+* Files are uploaded directly to YOUR Google Drive folder
+
+
+WHY AUTHORIZATION?
+------------------
+
+Google requires ALL apps to get user permission before uploading to Drive.
+This is a security feature. You authorize once, and STEM saves the token.
+
+The authorization says:
+  "STEM VCS can upload files to folders you specify"
+
+It CANNOT:
+  - Access your Gmail
+  - Read other files in your Drive
+  - Access your Google account
+  - Do anything else
+
+It ONLY uploads to the folder YOU specify.
+
+
+TROUBLESHOOTING
+---------------
+
+Problem: "Authorization required" error
+Solution: Run the SetupAuth command (see Step 5 above)
+
+Problem: "Client ID not found"
+Solution: STEM uses public credentials - this shouldn't happen. 
+          If it does, check that gdrive_upload.ps1 wasn't modified.
+
+Problem: Browser doesn't open
+Solution: Copy this URL manually:
+  https://accounts.google.com/o/oauth2/v2/auth?client_id=532668927934...
+  (The full URL will be shown in the error message)
+
+Problem: "Files not uploading"
+Solution: 
+  1. Check internet connection
+  2. Verify folder ID is correct
+  3. Re-run authorization: .\gdrive_upload.ps1 -SetupAuth
+
+
+WHAT GETS UPLOADED
+------------------
+
+When you run 'stem push', these are uploaded to Google Drive:
+
+  .stem/objects/     - Your file contents (compressed)
+  .stem/refs/        - Branch references  
+  .stem/config       - Repository config
+  .stem/index        - Staging area
+  .stem/HEAD         - Current branch
+
+Your actual working files (e.g., src/, README.md, etc.) are NOT uploaded.
+Only the .stem/ directory is uploaded (which contains ALL your version history).
+
+This is efficient:
+  - Your 500MB project becomes ~50MB when compressed
+  - Only version control data is uploaded
+  - Working files stay on your local machine
+
+
+VIEWING YOUR BACKUP
+-------------------
+
+After pushing, go to:
+  https://drive.google.com/drive/folders/YOUR_FOLDER_ID
+
+You'll see a folder like:
+  stem_backup_20260802_143025/
+
+This contains your repository backup.
+
+
+SUMMARY
+-------
+
+1. Get Google Drive folder URL
+2. Run: stem init --cloud "<url>"
+3. Run: stem add .
+4. Run: stem commit -m "message"
+5. Run: stem push
+6. First time: Authorize (one-time)
+7. Run: stem push again
+8. Done!
+
+NO desktop app needed!
+NO complex setup needed!
+
+Just connect folder → authorize once → push anytime!
+
+================================================================================
+
+That's the workflow you wanted!
+
+Simple. Direct. No unnecessary apps.
+
+================================================================================

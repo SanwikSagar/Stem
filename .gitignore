@@ -1,0 +1,217 @@
+# ================================================================
+# STEM VCS - Git Ignore Configuration
+# ================================================================
+
+# -----------------------------
+# Build Artifacts
+# -----------------------------
+build/
+cmake-build-*/
+out/
+bin/
+obj/
+tools/mingw64/
+
+# Compiled binaries
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+*.o
+*.obj
+*.out
+
+# -----------------------------
+# IDE and Editor Files
+# -----------------------------
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# JetBrains IDEs (IntelliJ, CLion)
+.idea/
+*.iml
+*.iws
+
+# Vim
+*.swp
+*.swo
+*~
+.*.swp
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# -----------------------------
+# Operating Systems
+# -----------------------------
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# -----------------------------
+# Build Systems
+# -----------------------------
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps/
+
+# Make
+*.d
+*.mk
+
+# -----------------------------
+# Dependencies
+# -----------------------------
+external/
+vendor/
+third_party/
+
+# -----------------------------
+# STEM VCS Specific
+# -----------------------------
+# Repository data
+.stem/
+.stemignore
+
+# Test repositories
+test_repo/
+temp_repo/
+demo_repo/
+
+# Authentication tokens
+.stem_gdrive_token
+*_token
+*.token
+gdrive_token
+auth_token
+
+# -----------------------------
+# Logs and Temporary Files
+# -----------------------------
+*.log
+*.tmp
+*.temp
+*.bak
+*.backup
+*.cache
+
+# Debug logs
+debug.log
+error.log
+trace.log
+
+# -----------------------------
+# Archives and Compressed Files
+# -----------------------------
+*.zip
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+!tools/mingw.7z
+
+# -----------------------------
+# Documentation Build
+# -----------------------------
+docs/build/
+docs/_build/
+*.pdf
+!docs/*.pdf
+
+# -----------------------------
+# Package Managers
+# -----------------------------
+node_modules/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.egg-info/
+
+# -----------------------------
+# Security and Credentials
+# -----------------------------
+*.pem
+*.key
+*.crt
+*.p12
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+credentials.json
+credentials.*.json
+client_secret*.json
+*-service-account*.json
+*.pfx
+*.p7b
+*.jks
+*.keystore
+*.asc
+*.gpg
+*.secret
+*.secrets
+*.token
+*_token
+.aws/credentials
+.azure/
+.config/gcloud/
+.terraform/
+*.tfstate
+*.tfstate.*
+
+# -----------------------------
+# Testing
+# -----------------------------
+coverage/
+*.gcov
+*.gcda
+*.gcno
+
+# -----------------------------
+# Miscellaneous
+# -----------------------------
+*.core
+core.*
+vgcore.*
+.nfs*
+

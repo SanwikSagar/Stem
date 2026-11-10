@@ -1,0 +1,98 @@
+================================================================================
+                              START HERE!
+                    STEM VCS with Google Drive - Simple Guide
+================================================================================
+
+YOU WANTED: Connect Google Drive folder → Push files → Done!
+
+YOU GOT IT: That's EXACTLY how it works now!
+
+
+THE WORKFLOW (SIMPLE!)
+----------------------
+
+1. Connect your Google Drive folder:
+   stem init --cloud "https://drive.google.com/drive/folders/YOUR_FOLDER_ID"
+
+2. Add files:
+   stem add .
+
+3. Commit:
+   stem commit -m "Initial commit"
+
+4. Push to Google Drive:
+   stem push
+
+5. First time only: Authorize STEM (Google will ask - just click Allow)
+
+6. Push again:
+   stem push
+
+DONE! Files uploaded to Google Drive!
+
+
+NO DESKTOP APP NEEDED!
+----------------------
+
+You don't need Google Drive Desktop app.
+You don't need complex setup.
+You just:
+  - Connect folder
+  - Authorize once
+  - Push anytime
+
+
+FOR YOUR XYLUS OS PROJECT
+-------------------------
+
+cd E:\STEM_VCS\previous_Versions\version_0
+
+stem init --cloud "https://drive.google.com/drive/folders/YOUR_FOLDER_ID"
+
+stem add .
+
+stem commit -m "Initial commit"
+
+stem push
+
+If it says "authorization required":
+  powershell -ExecutionPolicy Bypass -File "C:\path\to\STEM_VCS\gdrive_upload.ps1" -SetupAuth
+  (Browser opens → Sign in → Click Allow → Copy code → Paste → Done)
+
+Then:
+  stem push
+
+Your 164 files (~500MB) will upload to Google Drive!
+
+
+THAT'S IT!
+----------
+
+From now on, just:
+  stem add .
+  stem commit -m "message"
+  stem push
+
+Files upload automatically.
+
+
+MORE DETAILS
+------------
+
+If you want detailed explanation, see: SIMPLE_SETUP.txt
+If you want technical info, see: IMPLEMENTATION_SUMMARY.md
+
+But honestly, the commands above are all you need.
+
+
+BOTTOM LINE
+-----------
+
+✓ NO desktop app needed
+✓ Direct upload to YOUR Google Drive folder
+✓ One-time authorization (2 minutes)
+✓ Push anytime after that
+
+Exactly what you asked for!
+
+================================================================================

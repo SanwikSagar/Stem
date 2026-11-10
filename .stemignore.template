@@ -1,0 +1,288 @@
+# ============================================================================
+# STEM VCS - Universal Ignore File
+# ============================================================================
+# Copy this file to your project root as ".stemignore"
+# Files and folders matching these patterns will NOT be committed or pushed
+# Uncomment lines (remove #) to activate patterns you need
+
+# ============================================================================
+# STEM System Files (Always ignored)
+# ============================================================================
+.stem/
+
+# ============================================================================
+# IDE and Editor Files
+# ============================================================================
+.vscode/
+.vs/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.swp
+*~
+.project
+.classpath
+.settings/
+
+# ============================================================================
+# AI Assistant Files
+# ============================================================================
+.kiro/
+.cursor/
+.copilot/
+
+# ============================================================================
+# Build Outputs - Compiled Binaries (DON'T COMMIT!)
+# ============================================================================
+bin/
+obj/
+build/
+dist/
+out/
+target/
+*.exe
+*.dll
+*.so
+*.dylib
+*.o
+*.obj
+*.pdb
+*.ilk
+*.lib
+*.a
+*.wasm
+
+# ============================================================================
+# Test Files and Test Data (Usually not committed)
+# ============================================================================
+*.test
+*.dat
+test_repo/
+TestResults/
+*.trx
+coverage/
+*.cover
+.pytest_cache/
+__pycache__/
+.tox/
+
+# ============================================================================
+# Temporary and Cache Files
+# ============================================================================
+*.tmp
+*.temp
+*.log
+*.cache
+*.bak
+*.backup
+*.old
+*.orig
+*.rej
+*.swo
+*.swn
+*.swm
+.DS_Store_*
+
+# ============================================================================
+# OS-Specific Files
+# ============================================================================
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+$RECYCLE.BIN/
+.Trashes
+.Spotlight-V100
+.TemporaryItems
+
+# ============================================================================
+# Dependencies (Can be restored from package managers)
+# ============================================================================
+node_modules/
+bower_components/
+jspm_packages/
+packages/
+vendor/
+.gradle/
+.m2/
+.cargo/
+venv/
+env/
+.venv/
+ENV/
+
+# ============================================================================
+# Package Manager Lock Files (Uncomment if you don't want to commit)
+# ============================================================================
+#package-lock.json
+#yarn.lock
+#pnpm-lock.yaml
+#Cargo.lock
+#Gemfile.lock
+#composer.lock
+#bun.lockb
+#bun.lock
+
+# ============================================================================
+# Database Files
+# ============================================================================
+*.db
+*.sqlite
+*.sqlite3
+*.mdb
+*.accdb
+*.db-shm
+*.db-wal
+
+# ============================================================================
+# Credentials and Secrets (NEVER COMMIT THESE!)
+# ============================================================================
+*.key
+*.pem
+*.p12
+*.pfx
+*.keystore
+.env
+.env.*
+!.env.example
+secrets.json
+credentials.json
+appsettings.Development.json
+config.local.json
+.npmrc
+.pypirc
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+
+# ============================================================================
+# Archives and Compressed Files
+# ============================================================================
+*.zip
+*.7z
+*.tar
+*.gz
+*.rar
+*.tgz
+*.bz2
+
+# ============================================================================
+# Images (Uncomment if you DON'T want to commit images)
+# ============================================================================
+#*.png
+#*.jpg
+#*.jpeg
+#*.gif
+#*.bmp
+#*.ico
+#*.webp
+#*.svg
+
+# ============================================================================
+# Documents (Uncomment if you DON'T want to commit docs)
+# ============================================================================
+#*.pdf
+#*.doc
+#*.docx
+#*.xls
+#*.xlsx
+#*.ppt
+#*.pptx
+
+# ============================================================================
+# Font Files (Binary, usually large)
+# ============================================================================
+#*.ttf
+#*.otf
+#*.woff
+#*.woff2
+#*.eot
+
+# ============================================================================
+# Video and Audio Files (Usually too large)
+# ============================================================================
+#*.mp4
+#*.avi
+#*.mov
+#*.mkv
+#*.mp3
+#*.wav
+#*.flac
+
+# ============================================================================
+# External/Vendor Libraries (Usually large, can be downloaded)
+# ============================================================================
+#external/
+#third_party/
+#libs/
+#tools/
+
+# ============================================================================
+# Specific Test Directories (Uncomment what you need)
+# ============================================================================
+#test/
+#tests/
+#__tests__/
+#spec/
+#specs/
+#fixtures/
+#mocks/
+#data/
+
+# ============================================================================
+# HTML/CSS Test Files (Uncomment if you have many test HTML files)
+# ============================================================================
+#test*.html
+#demo*.html
+#example*.html
+#*.test.html
+
+# ============================================================================
+# Language-Specific Build Artifacts
+# ============================================================================
+
+# JavaScript/Node
+dist/
+*.min.js
+*.bundle.js
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+
+# C#/.NET
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+
+# Go
+*.exe
+*.test
+
+# Rust
+target/
+Cargo.lock
+
+# Ruby
+*.gem
+.bundle/
+
+# ============================================================================
+# Your Custom Exclusions
+# ============================================================================
+# Add any project-specific files or folders below:
+

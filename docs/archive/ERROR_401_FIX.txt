@@ -1,0 +1,88 @@
+================================================================================
+                    ERROR 401: invalid_client - HOW TO FIX
+================================================================================
+
+YOU SAW THIS ERROR:
+-------------------
+"Access blocked: Authorisation error"
+"Error 401: invalid_client"
+"The OAuth client was not found."
+
+
+WHAT IT MEANS
+-------------
+The Google Drive credentials in gdrive_upload.ps1 are placeholder values.
+You need to create your own Google Cloud project and OAuth credentials.
+
+
+WHY THIS HAPPENS
+----------------
+Google requires EACH developer to create their own credentials for security.
+STEM cannot provide shared credentials - Google's policy forbids it.
+
+
+HOW TO FIX (10 MINUTES)
+------------------------
+
+FOLLOW THIS FILE: C:\path\to\STEM_VCS\SETUP_GOOGLE_CREDENTIALS.md
+
+Quick summary:
+
+1. Go to: https://console.cloud.google.com/
+2. Create project: "STEM VCS"
+3. Enable: Google Drive API
+4. Create: OAuth consent screen (add your-email@example.com as test user)
+5. Create: OAuth credentials (Desktop app)
+6. Download: JSON file
+7. Edit: C:\path\to\STEM_VCS\gdrive_upload.ps1
+   - Replace $ClientId with YOUR client_id
+   - Replace $ClientSecret with YOUR client_secret
+8. Run: powershell -ExecutionPolicy Bypass -File C:\path\to\STEM_VCS\gdrive_upload.ps1 -SetupAuth
+9. Authorize in browser
+10. Done!
+
+
+DETAILED GUIDE
+--------------
+See: SETUP_GOOGLE_CREDENTIALS.md (step-by-step with screenshots description)
+
+
+AFTER YOU FIX THIS
+------------------
+You'll only need to do this ONCE.
+After setup, 'stem push' will work forever!
+
+
+IS THIS NORMAL?
+---------------
+YES! All Google Drive apps require this setup:
+- Google Drive Desktop app
+- rclone
+- Backup and Sync
+- ANY app that uploads to Drive
+
+This is Google's security requirement, not a STEM limitation.
+
+
+TIME REQUIRED
+-------------
+First time: 10 minutes (one-time setup)
+After that: Just 'stem push' - instant!
+
+
+ALTERNATIVE
+-----------
+If you don't want to do OAuth setup, you can:
+1. Install Google Drive Desktop app
+2. Move your project folder to Google Drive folder
+3. Files auto-sync
+
+But if you want 'stem push' to work directly, you need OAuth setup.
+
+
+NEED HELP?
+----------
+Read: SETUP_GOOGLE_CREDENTIALS.md
+It has step-by-step instructions for every step.
+
+================================================================================

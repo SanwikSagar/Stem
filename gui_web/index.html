@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STEM - Version Control System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Top Bar -->
+    <header class="titlebar">
+        <div class="titlebar-left">
+            <button class="icon-btn" id="backBtn" title="Back">
+                <svg width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M11 3L6 8l5 5V3z"/></svg>
+            </button>
+            <button class="icon-btn" id="forwardBtn" title="Forward">
+                <svg width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M5 13l5-5-5-5v10z"/></svg>
+            </button>
+            
+            <div class="branch-selector">
+                <svg class="branch-icon" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M11.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122V6A2.5 2.5 0 0110 8.5H6a1 1 0 00-1 1v1.128a2.251 2.251 0 11-1.5 0V5.372a2.25 2.25 0 111.5 0v1.836A2.492 2.492 0 016 7h4a1 1 0 001-1v-.628A2.25 2.25 0 019.5 3.25zM4.25 12a.75.75 0 100 1.5.75.75 0 000-1.5zM3.5 3.25a.75.75 0 111.5 0 .75.75 0 01-1.5 0z"/></svg>
+                <select id="branchSelect">
+                    <option value="main">main</option>
+                </select>
+            </div>
+            
+            <div class="repo-selector">
+                <svg width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"/></svg>
+                <select id="repoSelect">
+                    <option value="">Current Repository</option>
+                </select>
+            </div>
+            
+            <button class="btn-action" id="createBranchBtn">
+                <svg width="14" height="14" viewBox="0 0 16 16"><path fill="currentColor" d="M7.75 2a.75.75 0 01.75.75V7h4.25a.75.75 0 010 1.5H8.5v4.25a.75.75 0 01-1.5 0V8.5H2.75a.75.75 0 010-1.5H7V2.75A.75.75 0 017.75 2z"/></svg>
+                Branch
+            </button>
+            
+            <button class="btn-action" id="mergeBtn">
+                <svg width="14" height="14" viewBox="0 0 16 16"><path fill="currentColor" d="M5.45 5.154A4.25 4.25 0 009.25 7.5h1.378a2.251 2.251 0 110 1.5H9.25A5.734 5.734 0 015 7.123v3.505a2.25 2.25 0 11-1.5 0V5.372a2.25 2.25 0 111.95-.218zM4.25 3.5a.75.75 0 100-1.5.75.75 0 000 1.5zm8.5 9.5a.75.75 0 100-1.5.75.75 0 000 1.5zM5 11.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"/></svg>
+                Merge
+            </button>
+        </div>
+        
+        <div class="titlebar-center">
+            <span class="logo-icon">🌱</span>
+            <span class="logo-text">STEM</span>
+            <span class="version">v0.1.0</span>
+        </div>
+        
+        <div class="titlebar-right">
+            <button class="btn-action" id="addRepoBtn" title="Add Repository">
+                <svg width="14" height="14" viewBox="0 0 16 16"><path fill="currentColor" d="M7.75 2a.75.75 0 01.75.75V7h4.25a.75.75 0 010 1.5H8.5v4.25a.75.75 0 01-1.5 0V8.5H2.75a.75.75 0 010-1.5H7V2.75A.75.75 0 017.75 2z"/></svg>
+            </button>
+            
+            <button class="btn-pull" id="pullBtn">
+                <svg width="14" height="14" viewBox="0 0 16 16"><path fill="currentColor" d="M8 2.75a.75.75 0 01.75.75v5.69l1.72-1.72a.75.75 0 111.06 1.06l-3 3a.75.75 0 01-1.06 0l-3-3a.75.75 0 011.06-1.06l1.72 1.72V3.5A.75.75 0 018 2.75z"/></svg>
+                Pull
+            </button>
+            <button class="btn-push" id="pushBtn">
+                <svg width="14" height="14" viewBox="0 0 16 16"><path fill="currentColor" d="M8 13.25a.75.75 0 01-.75-.75V6.81l-1.72 1.72a.75.75 0 01-1.06-1.06l3-3a.75.75 0 011.06 0l3 3a.75.75 0 11-1.06 1.06L8.75 6.81V12.5a.75.75 0 01-.75.75z"/></svg>
+                Push
+            </button>
+            <button class="btn-sync" id="syncBtn">
+                <svg width="14" height="14" viewBox="0 0 16 16"><path fill="currentColor" d="M1.705 8.005a.75.75 0 01.834.656 5.5 5.5 0 009.592 2.97l-1.204-1.204a.25.25 0 01.177-.427h3.646a.25.25 0 01.25.25v3.646a.25.25 0 01-.427.177l-1.38-1.38A7.001 7.001 0 011.05 8.84a.75.75 0 01.656-.834zM8 2.5a5.487 5.487 0 00-4.131 1.869l1.204 1.204A.25.25 0 014.896 6H1.25A.25.25 0 011 5.75V2.104a.25.25 0 01.427-.177l1.38 1.38A7.001 7.001 0 0114.95 7.16a.75.75 0 01-1.49.178A5.501 5.501 0 008 2.5z"/></svg>
+                Sync
+            </button>
+            
+            <div class="search-box">
+                <svg width="14" height="14" viewBox="0 0 16 16"><path fill="currentColor" d="M11.5 7a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zm-.82 4.74a6 6 0 111.06-1.06l3.04 3.04a.75.75 0 11-1.06 1.06l-3.04-3.04z"/></svg>
+                <input type="text" placeholder="Search (Ctrl+K)" id="searchInput">
+            </div>
+            
+            <button class="icon-btn" id="settingsBtn" title="Settings">
+                <svg width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0a8.2 8.2 0 018 8.2 8.2 8.2 0 01-8 8.2A8.2 8.2 0 010 8.2 8.2 8.2 0 018 0z M1.5 8.2a6.7 6.7 0 006.5 6.7 6.7 6.7 0 006.5-6.7 6.7 6.7 0 00-6.5-6.7 6.7 6.7 0 00-6.5 6.7z M8 4.2a3.7 3.7 0 013.7 3.7A3.7 3.7 0 018 11.6 3.7 3.7 0 014.3 7.9 3.7 3.7 0 018 4.2z m0 1.5a2.2 2.2 0 00-2.2 2.2A2.2 2.2 0 008 10.1a2.2 2.2 0 002.2-2.2A2.2 2.2 0 008 5.7z"/></svg>
+            </button>
+            <button class="icon-btn" id="themeBtn" title="Toggle Theme">
+                <svg width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 110-8 4 4 0 010 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 01-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>EXPLORER</h3>
+            </div>
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-view="overview">
+                    <svg width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M1.75 2.5a.25.25 0 00-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25V2.75a.25.25 0 00-.25-.25H1.75zM0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0114.25 15H1.75A1.75 1.75 0 010 13.25V2.75z"/></svg>
+                    <span>Overview</span>
+                </button>
+                <button class="nav-item" data-view="changes">
+                    <svg width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0a8 8 0 110 16A8 8 0 018 0zM1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0z"/></svg>
+                    <span>Changes</span>
+                    <span class="badge" id="changesBadge">3</span>
+                </button>
+                <button class="nav-item" data-view="history">
+                    <svg width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M1.643 3.143L.427 1.927A.25.25 0 000 2.104V5.75c0 .138.112.25.25.25h3.646a.25.25 0 00.177-.427L2.715 4.215a6.5 6.5 0 11-1.18 4.458.75.75 0 10-1.493.154 8.001 8.001 0 101.6-5.684zM7.75 4a.75.75 0 01.75.75v2.992l2.028.812a.75.75 0 01-.557 1.392l-2.5-1A.75.75 0 017 8.25v-3.5A.75.75 0 017.75 4z"/></svg>
+                    <span>History</span>
+                </button>
+                <button class="nav-item" data-view="branches">
+                    <svg width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M11.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122V6A2.5 2.5 0 0110 8.5H6a1 1 0 00-1 1v1.128a2.251 2.251 0 11-1.5 0V5.372a2.25 2.25 0 111.5 0v1.836A2.492 2.492 0 016 7h4a1 1 0 001-1v-.628A2.25 2.25 0 019.5 3.25zM4.25 12a.75.75 0 100 1.5.75.75 0 000-1.5zM3.5 3.25a.75.75 0 111.5 0 .75.75 0 01-1.5 0z"/></svg>
+                    <span>Branches</span>
+                </button>
+                <button class="nav-item" data-view="tags">
+                    <svg width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M2.5 7.775V2.75c0-.138.112-.25.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"/></svg>
+                    <span>Tags</span>
+                </button>
+                <button class="nav-item" data-view="remotes">
+                    <svg width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0a8 8 0 110 16A8 8 0 018 0zM1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zm7-3.25a.75.75 0 00-1.5 0v2.992l-2.028.812a.75.75 0 00.557 1.392l2.5-1A.75.75 0 009 8.25v-3.5z"/></svg>
+                    <span>Remotes</span>
+                </button>
+                <button class="nav-item" data-view="repositories">
+                    <svg width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8z"/></svg>
+                    <span>Repositories</span>
+                </button>
+                <button class="nav-item" data-view="settings">
+                    <svg width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0a8.2 8.2 0 018 8.2 8.2 8.2 0 01-8 8.2A8.2 8.2 0 010 8.2 8.2 8.2 0 018 0zM1.5 8.2a6.7 6.7 0 006.5 6.7 6.7 6.7 0 006.5-6.7 6.7 6.7 0 00-6.5-6.7 6.7 6.7 0 00-6.5 6.7z"/></svg>
+                    <span>Settings</span>
+                </button>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="repo-section">
+                    <h4>REPOSITORY</h4>
+                    <div class="repo-info">
+                        <div class="folder-tree" id="folderTree">
+                            <!-- Will be populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="content-wrapper">
+            <!-- Content Area -->
+            <main class="content-area">
+                <div id="mainContent">
+                    <!-- Content views will be injected here -->
+                </div>
+            </main>
+
+            <!-- Right Panel (Remote/Status) -->
+            <aside class="right-panel">
+                <div class="panel-section">
+                    <h3>REMOTE</h3>
+                    <div class="remote-card">
+                        <div class="remote-icon">
+                            <svg width="20" height="20" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0a8 8 0 110 16A8 8 0 018 0zM1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0z"/></svg>
+                        </div>
+                        <div class="remote-info">
+                            <div class="remote-name" id="remoteName">Google Drive</div>
+                            <div class="remote-status">
+                                <span class="status-indicator connected"></span>
+                                <span id="remoteStatus">Connected</span>
+                            </div>
+                            <div class="remote-url" id="remoteUrl">https://drive.google.com...</div>
+                            <div class="remote-stats">
+                                <span id="remoteSize">12.4 GB / 100 GB (12%)</span>
+                            </div>
+                        </div>
+                        <button class="btn-change-remote" id="changeRemoteBtn">Change Remote</button>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h3>STATUS</h3>
+                    <div class="status-grid">
+                        <div class="status-item">
+                            <span class="status-label">On branch</span>
+                            <span class="status-value" id="statusBranch">main</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Staged Changes</span>
+                            <span class="status-value status-warning" id="statusStaged">0</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Working Tree</span>
+                            <span class="status-value status-success" id="statusWorking">Clean</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Untracked Files</span>
+                            <span class="status-value" id="statusUntracked">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h3>ACTIONS</h3>
+                    <div class="action-buttons">
+                        <button class="action-btn" id="stageAllBtn">
+                            <svg width="14" height="14" viewBox="0 0 16 16"><path fill="currentColor" d="M7.75 2a.75.75 0 01.75.75V7h4.25a.75.75 0 010 1.5H8.5v4.25a.75.75 0 01-1.5 0V8.5H2.75a.75.75 0 010-1.5H7V2.75A.75.75 0 017.75 2z"/></svg>
+                            Stage All
+                        </button>
+                        <button class="action-btn action-primary" id="commitBtn">
+                            <svg width="14" height="14" viewBox="0 0 16 16"><path fill="currentColor" d="M11.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122V6A2.5 2.5 0 0110 8.5H6a1 1 0 00-1 1v1.128a2.251 2.251 0 11-1.5 0V5.372a2.25 2.25 0 111.5 0v1.836A2.492 2.492 0 016 7h4a1 1 0 001-1v-.628A2.25 2.25 0 019.5 3.25zM4.25 12a.75.75 0 100 1.5.75.75 0 000-1.5zM3.5 3.25a.75.75 0 111.5 0 .75.75 0 01-1.5 0z"/></svg>
+                            Commit
+                        </button>
+                    </div>
+                    <button class="action-btn action-pull" id="pullActionBtn">
+                        <svg width="14" height="14" viewBox="0 0 16 16"><path fill="currentColor" d="M8 2.75a.75.75 0 01.75.75v5.69l1.72-1.72a.75.75 0 111.06 1.06l-3 3a.75.75 0 01-1.06 0l-3-3a.75.75 0 011.06-1.06l1.72 1.72V3.5A.75.75 0 018 2.75z"/></svg>
+                        Pull
+                    </button>
+                    <button class="action-btn action-push" id="pushActionBtn">
+                        <svg width="14" height="14" viewBox="0 0 16 16"><path fill="currentColor" d="M8 13.25a.75.75 0 01-.75-.75V6.81l-1.72 1.72a.75.75 0 01-1.06-1.06l3-3a.75.75 0 011.06 0l3 3a.75.75 0 11-1.06 1.06L8.75 6.81V12.5a.75.75 0 01-.75.75z"/></svg>
+                        Push
+                    </button>
+                    <button class="action-btn action-sync" id="syncActionBtn">
+                        <svg width="14" height="14" viewBox="0 0 16 16"><path fill="currentColor" d="M1.705 8.005a.75.75 0 01.834.656 5.5 5.5 0 009.592 2.97l-1.204-1.204a.25.25 0 01.177-.427h3.646a.25.25 0 01.25.25v3.646a.25.25 0 01-.427.177l-1.38-1.38A7.001 7.001 0 011.05 8.84a.75.75 0 01.656-.834zM8 2.5a5.487 5.487 0 00-4.131 1.869l1.204 1.204A.25.25 0 014.896 6H1.25A.25.25 0 011 5.75V2.104a.25.25 0 01.427-.177l1.38 1.38A7.001 7.001 0 0114.95 7.16a.75.75 0 01-1.49.178A5.501 5.501 0 008 2.5z"/></svg>
+                        Sync now
+                    </button>
+                </div>
+
+                <div class="panel-section">
+                    <h3>RECENT ACTIVITY</h3>
+                    <div class="activity-list" id="activityList">
+                        <!-- Will be populated by JS -->
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Status Bar -->
+    <footer class="statusbar">
+        <div class="statusbar-left">
+            <span class="status-item">
+                <svg width="14" height="14" viewBox="0 0 16 16"><path fill="currentColor" d="M11.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122V6A2.5 2.5 0 0110 8.5H6a1 1 0 00-1 1v1.128a2.251 2.251 0 11-1.5 0V5.372a2.25 2.25 0 111.5 0v1.836A2.492 2.492 0 016 7h4a1 1 0 001-1v-.628A2.25 2.25 0 019.5 3.25zM4.25 12a.75.75 0 100 1.5.75.75 0 000-1.5zM3.5 3.25a.75.75 0 111.5 0 .75.75 0 01-1.5 0z"/></svg>
+                <span id="statusBarBranch">main</span>
+            </span>
+            <span class="status-item">
+                <span class="status-icon">↑</span>
+                <span id="statusAhead">0</span>
+            </span>
+            <span class="status-item">
+                <span class="status-icon">↓</span>
+                <span id="statusBehind">0</span>
+            </span>
+            <span class="status-item status-clickable" id="statusChanges">
+                <svg width="14" height="14" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0a8 8 0 110 16A8 8 0 018 0zM1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0z"/></svg>
+                <span>Working Tree Clean</span>
+            </span>
+        </div>
+        
+        <div class="statusbar-right">
+            <span class="status-item" id="statusMessage">Ready</span>
+        </div>
+    </footer>
+
+    <!-- Remote URL Modal -->
+    <div id="remoteModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Configure Remote Storage</h2>
+                <button class="modal-close" onclick="window.stemApp.closeRemoteModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="color: var(--text-secondary); margin-bottom: 16px;">Enter your Google Drive folder URL:</p>
+                <input type="text" id="remoteUrlInput" class="modal-input" placeholder="https://drive.google.com/drive/folders/YOUR_FOLDER_ID" />
+                <p style="color: var(--text-dim); font-size: 12px; margin-top: 8px;">
+                    Get the folder URL from Google Drive by right-clicking the folder and selecting "Get link"
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary" onclick="window.stemApp.closeRemoteModal()">Cancel</button>
+                <button class="modal-btn modal-btn-primary" onclick="window.stemApp.saveRemoteUrl()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Commit Modal -->
+    <div id="commitModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create Commit</h2>
+                <button class="modal-close" onclick="window.stemApp.closeCommitModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="color: var(--text-secondary); margin-bottom: 8px;">Commit message:</p>
+                <textarea id="commitMessageInput" class="modal-textarea" placeholder="Describe your changes..." rows="4"></textarea>
+                <p style="color: var(--text-dim); font-size: 12px; margin-top: 8px;" id="stagedFilesCount">
+                    0 files staged for commit
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary" onclick="window.stemApp.closeCommitModal()">Cancel</button>
+                <button class="modal-btn modal-btn-primary" onclick="window.stemApp.saveCommit()">Commit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Branch Creation Modal -->
+    <div id="branchModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create New Branch</h2>
+                <button class="modal-close" onclick="window.stemApp.closeBranchModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="color: var(--text-secondary); margin-bottom: 8px;">Branch name:</p>
+                <input type="text" id="branchNameInput" class="modal-input" placeholder="feature/new-feature" />
+                <p style="color: var(--text-dim); font-size: 12px; margin-top: 8px;">
+                    The branch will be created from the current HEAD
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary" onclick="window.stemApp.closeBranchModal()">Cancel</button>
+                <button class="modal-btn modal-btn-primary" onclick="window.stemApp.saveBranch()">Create Branch</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tag Creation Modal -->
+    <div id="tagModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create New Tag</h2>
+                <button class="modal-close" onclick="window.stemApp.closeTagModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="color: var(--text-secondary); margin-bottom: 8px;">Tag name:</p>
+                <input type="text" id="tagNameInput" class="modal-input" placeholder="v1.0.0" />
+                <p style="color: var(--text-dim); font-size: 12px; margin-top: 8px;">
+                    Tag will be created at the current commit
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary" onclick="window.stemApp.closeTagModal()">Cancel</button>
+                <button class="modal-btn modal-btn-primary" onclick="window.stemApp.saveTag()">Create Tag</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="confirmTitle">Confirm Action</h2>
+                <button class="modal-close" onclick="window.stemApp.closeConfirmModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="confirmMessage" style="color: var(--text-primary); margin-bottom: 16px;">Are you sure?</p>
+                <p id="confirmWarning" style="color: var(--accent-red); font-size: 12px; display: none;">
+                    ⚠️ This action cannot be undone
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary" onclick="window.stemApp.closeConfirmModal()">Cancel</button>
+                <button class="modal-btn modal-btn-primary" id="confirmButton" style="background: var(--accent-red);" onclick="window.stemApp.confirmAction()">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Repository Modal -->
+    <div id="addRepoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Repository</h2>
+                <button class="modal-close" onclick="window.stemApp.closeAddRepoModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="color: var(--text-secondary); margin-bottom: 8px;">Repository Name:</p>
+                <input type="text" id="repoNameInput" class="modal-input" placeholder="My Project" />
+                
+                <p style="color: var(--text-secondary); margin-bottom: 8px; margin-top: 16px;">Repository Path:</p>
+                <input type="text" id="repoPathInput" class="modal-input" placeholder="E:\Projects\MyProject" />
+                
+                <p style="color: var(--text-secondary); margin-bottom: 8px; margin-top: 16px;">Remote URL (optional):</p>
+                <input type="text" id="repoRemoteInput" class="modal-input" placeholder="https://drive.google.com/drive/folders/..." />
+                
+                <p style="color: var(--text-dim); font-size: 12px; margin-top: 8px;">
+                    The repository will be initialized if it doesn't have a .stem folder
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary" onclick="window.stemApp.closeAddRepoModal()">Cancel</button>
+                <button class="modal-btn modal-btn-primary" onclick="window.stemApp.saveRepository()">Add Repository</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
